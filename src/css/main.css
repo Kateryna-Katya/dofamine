@@ -1,0 +1,354 @@
+.home-title{
+    font-family: "Cinzel Decorative", sans-serif;
+        font-weight: 700;
+        font-size: 50px;
+        text-transform: uppercase;
+        text-align: center;
+        background: linear-gradient(180deg, #b5860d 0%, #c3ab70 50%, #b5860d 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 0.4px #760000;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+
+/* Можно добавить отдельный div на фон с этой анимацией */
+.home-link {
+    margin-top: 40px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 2px 2px 0 rgba(26, 28, 29, 0.5), 1px 2px 2px 0 rgba(161, 114, 20, 0.5);
+    background: #1a1c1d;
+    border: 1px solid #a17214;
+    border-radius: 16px;
+    width: 280px;
+    height: 48px;
+    font-family: "Goldman", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #d0d0d4;
+    transition: color 0.3s ease-in-out;
+}
+
+.home-link:hover,
+.home-link:focus {
+    color: #efb00d;
+}
+.home-section {
+    position: relative;
+    height: 70vh;
+    overflow: hidden;
+    background: #1a1c1d;
+}
+
+#particleCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    /* Контент поверх усього */
+}
+
+/* Стиль для малюнка */
+.hero-image-wrapper {
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 30px rgba(181, 134, 13, 0.4));
+}
+
+.hero-main-img {
+    width: 200px;
+    /* Відрегулюй під себе */
+    height: auto;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Левітація логотипу */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+.home-section {
+    position: relative;
+    /* Обязательно для работы absolute */
+}
+
+.corner-logo {
+    position: absolute;
+    width: 100px;
+    /* Размер логотипов в углах */
+    z-index: 5;
+    filter: drop-shadow(0 0 15px rgba(181, 134, 13, 0.4));
+    /* Золотое свечение */
+    opacity: 0.6;
+    /* Сделаем их чуть приглушенными */
+    transition: all 0.5s ease;
+}
+
+.corner-logo img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    /* Если лого квадратное, а хочешь круг */
+    border: 1px solid rgba(181, 134, 13, 0.2);
+}
+
+/* Позиции */
+.t-left {
+    top: 30px;
+    left: 30px;
+}
+
+.b-right {
+    bottom: 30px;
+    right: 30px;
+}
+
+/* Эффект при наведении */
+.corner-logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(181, 134, 13, 0.7));
+}
+
+/* Адаптив для мобилок (чтобы не перекрывали текст) */
+@media (max-width: 768px) {
+    .corner-logo {
+        width: 60px;
+        top: 15px;
+        left: 15px;
+    }
+
+    .b-right {
+        bottom: 15px;
+        right: 15px;
+    }
+}
+/* Сяйво за мишкою */
+.cursor-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(181, 134, 13, 0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+}
+.about-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #1a1c1d 0%, #151718 100%);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-main-text {
+    max-width: 800px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #d0d0d4;
+    position: relative;
+}
+
+/* Золотой акцент для названия */
+.gold-text {
+    color: #c3ab70;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Красный акцент для важных слов (в цвет твоей обводки) */
+.highlight-red {
+    color: #760000;
+    font-weight: bold;
+    border-bottom: 1px solid #760000;
+}
+
+/* Сетка карточек */
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Стиль карточки-преимущества */
+.feature-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(181, 134, 13, 0.1);
+    padding: 40px 30px;
+    border-radius: 2px;
+    /* Острые углы под Goldman */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    background: rgba(181, 134, 13, 0.05);
+    border-color: #b5860d;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Светящаяся полоса сверху при наведении */
+.feature-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #b5860d;
+    transition: width 0.4s ease;
+}
+
+.feature-card:hover::before {
+    width: 100%;
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(181, 134, 13, 0.3));
+}
+
+.feature-card h3 {
+    font-family: "Goldman", sans-serif;
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #8a8a8e;
+    line-height: 1.6;
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.product-card {
+    background: #212325;
+    border: 1px solid #333;
+    padding: 30px;
+    border-radius: 4px;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: #b5860d;
+}
+
+.product-card h3 {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sub-h {
+    font-size: 14px;
+    color: #b5860d;
+}
+
+.pricing {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.price-row strong {
+    color: #c3ab70;
+}
+
+.card-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.card-features li::before {
+    content: "»";
+    color: #b5860d;
+    margin-right: 10px;
+}
+
+.buy-btn {
+    background: #b5860d;
+    color: #1a1c1d;
+    padding: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    background: #c3ab70;
+    letter-spacing: 1px;
+}
+
+/* Бейджи */
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #760000;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+}
+@media only screen and (min-width: 1440px) {
+ .home-title{
+    font-size: 100px;
+    margin-bottom: 50px;
+   margin-top: 100px;
+ }
+ .hero-subtitle{
+    font-size: 24px;
+ }
+}

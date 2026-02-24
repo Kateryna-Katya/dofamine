@@ -1,21 +1,70 @@
-.footer {
-  padding: 20px 0;
+.contact-section {
+    padding: 120px 0 60px;
+    background: #1a1c1d;
+    position: relative;
+    border-top: 1px solid rgba(181, 134, 13, 0.1);
 }
-.footer-desc {
-  text-align: center;
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
-.footer-link {
-  position: relative;
+
+.contact-subtitle {
+    font-size: 18px;
+    color: #8a8a8e;
+    max-width: 500px;
 }
-.footer-link::before {
-  content: '';
-  position: absolute;
-  bottom: 6%;
-  left: 50%;
-  transform: translateX(-50%) skewX(-12deg);
-  z-index: -1;
-  width: 110%;
-  height: 24%;
-  background-color: #41d1ff;
-  transition: 200ms ease;
+
+/* Кнопка в стиле "Золотой неон" */
+.tg-link-premium {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: transparent;
+    border: 2px solid #b5860d;
+    padding: 20px 50px;
+    color: #c3ab70;
+    text-decoration: none;
+    font-family: "Goldman", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(181, 134, 13, 0.1);
+}
+
+.tg-link-premium:hover {
+    background: #b5860d;
+    color: #1a1c1d;
+    box-shadow: 0 0 40px rgba(181, 134, 13, 0.4);
+    transform: scale(1.05);
+}
+
+.tg-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Финальная линия и копирайт */
+.footer-bottom {
+    margin-top: 100px;
+    opacity: 0.5;
+}
+
+.footer-bottom .line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #760000, transparent);
+    margin-bottom: 30px;
+}
+
+.footer-note {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
