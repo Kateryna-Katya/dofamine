@@ -5,17 +5,23 @@ body {
   font-size: 16px;
   line-height: 1.5;
   text-align: center;
-  color: #d0d0d4;
+  /* Добавим легкий оттенок лаванды в текст, чтобы он не был "грязным" */
+  color: #e2e2e8;
 }
+
 h2 {
   font-family: "Cinzel Decorative", sans-serif;
   font-weight: 700;
   font-size: 32px;
   text-transform: uppercase;
   text-align: center;
-  background: linear-gradient(180deg, #b5860d 0%, #c3ab70 50%, #b5860d 100%);
+  /* Градиент теперь повторяет переливы на букве H и треугольнике из лого */
+  background: linear-gradient(180deg, #f5f3ff 0%, #a855f7 50%, #6b21a8 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.4px #760000;
+  /* Заменяем красный контур на глубокий темно-фиолетовый */
+  -webkit-text-stroke: 0.4px #2e1065;
+  /* Добавим легкое свечение, как на логотипе */
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
 }

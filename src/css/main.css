@@ -1,20 +1,24 @@
-.home-title{
+/* =========================
+   HERO SECTION
+========================= */
+
+/* --- ГЛАВНЫЙ ЗАГОЛОВОК --- */
+.home-title {
     font-family: "Cinzel Decorative", sans-serif;
-        font-weight: 700;
-        font-size: 50px;
-        text-transform: uppercase;
-        text-align: center;
-        background: linear-gradient(180deg, #b5860d 0%, #c3ab70 50%, #b5860d 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-text-stroke: 0.4px #760000;
-    margin-top: 100px;
+    font-weight: 700;
+    font-size: 50px;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(180deg, #f5f3ff 0%, #a855f7 50%, #6b21a8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.4px #2e1065;
+    margin-top: 140px;
     margin-bottom: 40px;
 }
 
-
-/* Можно добавить отдельный div на фон с этой анимацией */
+/* --- ГЛАВНАЯ КНОПКА --- */
 .home-link {
     margin-top: 40px;
     display: flex;
@@ -22,9 +26,9 @@
     margin-right: auto;
     align-items: center;
     justify-content: center;
-    box-shadow: 1px 2px 2px 0 rgba(26, 28, 29, 0.5), 1px 2px 2px 0 rgba(161, 114, 20, 0.5);
+    box-shadow: 1px 2px 10px 0 rgba(168, 85, 247, 0.3);
     background: #1a1c1d;
-    border: 1px solid #a17214;
+    border: 1px solid #a855f7;
     border-radius: 16px;
     width: 280px;
     height: 48px;
@@ -32,17 +36,21 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 1.3;
-    color: #d0d0d4;
-    transition: color 0.3s ease-in-out;
+    color: #e2e2e8;
+    transition: all 0.3s ease-in-out;
 }
 
 .home-link:hover,
 .home-link:focus {
-    color: #efb00d;
+    color: #ffffff;
+    background: #a855f7;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
 }
+
+/* --- СЕКЦИЯ --- */
 .home-section {
     position: relative;
-    height: 70vh;
+    height: 60vh;
     overflow: hidden;
     background: #1a1c1d;
 }
@@ -60,23 +68,20 @@
 .hero-content {
     position: relative;
     z-index: 10;
-    /* Контент поверх усього */
 }
 
-/* Стиль для малюнка */
+/* --- ЛОГО И ЛЕВИТАЦИЯ --- */
 .hero-image-wrapper {
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 30px rgba(181, 134, 13, 0.4));
+    filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
 }
 
 .hero-main-img {
     width: 200px;
-    /* Відрегулюй під себе */
     height: auto;
     animation: float 6s ease-in-out infinite;
 }
 
-/* Левітація логотипу */
 @keyframes float {
 
     0%,
@@ -88,20 +93,14 @@
         transform: translateY(-20px);
     }
 }
-.home-section {
-    position: relative;
-    /* Обязательно для работы absolute */
-}
 
+/* --- УГЛОВЫЕ ЛОГО --- */
 .corner-logo {
     position: absolute;
     width: 100px;
-    /* Размер логотипов в углах */
     z-index: 5;
-    filter: drop-shadow(0 0 15px rgba(181, 134, 13, 0.4));
-    /* Золотое свечение */
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
     opacity: 0.6;
-    /* Сделаем их чуть приглушенными */
     transition: all 0.5s ease;
 }
 
@@ -109,33 +108,48 @@
     width: 100%;
     height: auto;
     border-radius: 50%;
-    /* Если лого квадратное, а хочешь круг */
-    border: 1px solid rgba(181, 134, 13, 0.2);
+    border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
-/* Позиции */
 .t-left {
-    top: 30px;
+    top: 20%;
     left: 30px;
 }
 
 .b-right {
-    bottom: 30px;
+    bottom: 20%;
     right: 30px;
 }
 
-/* Эффект при наведении */
 .corner-logo:hover {
     opacity: 1;
     transform: scale(1.1);
-    filter: drop-shadow(0 0 25px rgba(181, 134, 13, 0.7));
+    filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.7));
 }
 
-/* Адаптив для мобилок (чтобы не перекрывали текст) */
 @media (max-width: 768px) {
+
+    /* 1. Увеличиваем высоту секции, если контента много, или ставим минимум */
+    .home-section {
+        height: auto;
+        min-height: 60vh;
+        /* Чтобы на маленьких телефонах ничего не вылетало */
+        padding: 80px 0;
+        /* Даем внутренние отступы, чтобы текст не бил в края */
+    }
+
+
+
+    /* 4. Логотипы в углах — делаем их меньше и убираем "навязчивость" */
     .corner-logo {
-        width: 60px;
-        top: 15px;
+        width: 45px;
+        /* Еще меньше */
+        opacity: 0.3;
+        /* Больше прозрачности, чтобы не перекрывали текст */
+    }
+
+    .t-left {
+        top: 20%;
         left: 15px;
     }
 
@@ -143,18 +157,37 @@
         bottom: 15px;
         right: 15px;
     }
+
+    /* 5. Кнопка — делаем чуть уже для узких экранов */
+    .home-link {
+        width: 240px;
+        height: 44px;
+        margin-top: 30px;
+    }
+
+    /* 6. Основной логотип в центре (если он есть) */
+    .hero-main-img {
+        width: 140px;
+    }
 }
-/* Сяйво за мишкою */
+
+/* --- СИЯНИЕ КУРСОРА --- */
 .cursor-glow {
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(181, 134, 13, 0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 2;
     transform: translate(-50%, -50%);
 }
+
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
 .about-section {
     padding: 100px 0;
     background: linear-gradient(180deg, #1a1c1d 0%, #151718 100%);
@@ -172,25 +205,22 @@
     font-size: 20px;
     line-height: 1.8;
     color: #d0d0d4;
-    position: relative;
 }
 
-/* Золотой акцент для названия */
 .gold-text {
-    color: #c3ab70;
+    color: #c084fc;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Красный акцент для важных слов (в цвет твоей обводки) */
 .highlight-red {
-    color: #760000;
+    color: #a855f7;
     font-weight: bold;
-    border-bottom: 1px solid #760000;
+    border-bottom: 1px solid #a855f7;
 }
 
-/* Сетка карточек */
+/* --- КАРТОЧКИ ПРЕИМУЩЕСТВ --- */
 .about-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -198,26 +228,23 @@
     width: 100%;
 }
 
-/* Стиль карточки-преимущества */
 .feature-card {
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(181, 134, 13, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.1);
     padding: 40px 30px;
     border-radius: 2px;
-    /* Острые углы под Goldman */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
 }
 
 .feature-card:hover {
-    background: rgba(181, 134, 13, 0.05);
-    border-color: #b5860d;
+    background: rgba(168, 85, 247, 0.05);
+    border-color: #a855f7;
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Светящаяся полоса сверху при наведении */
 .feature-card::before {
     content: "";
     position: absolute;
@@ -225,7 +252,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #b5860d;
+    background: #a855f7;
     transition: width 0.4s ease;
 }
 
@@ -236,7 +263,7 @@
 .card-icon {
     font-size: 40px;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(181, 134, 13, 0.3));
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
 }
 
 .feature-card h3 {
@@ -252,6 +279,12 @@
     color: #8a8a8e;
     line-height: 1.6;
 }
+
+
+/* =========================
+   PRODUCT SECTION
+========================= */
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -272,7 +305,7 @@
 
 .product-card:hover {
     transform: translateY(-5px);
-    border-color: #b5860d;
+    border-color: #a855f7;
 }
 
 .product-card h3 {
@@ -283,7 +316,7 @@
 
 .sub-h {
     font-size: 14px;
-    color: #b5860d;
+    color: #a855f7;
 }
 
 .pricing {
@@ -299,7 +332,7 @@
 }
 
 .price-row strong {
-    color: #c3ab70;
+    color: #c084fc;
 }
 
 .card-features {
@@ -313,13 +346,13 @@
 
 .card-features li::before {
     content: "»";
-    color: #b5860d;
+    color: #a855f7;
     margin-right: 10px;
 }
 
 .buy-btn {
-    background: #b5860d;
-    color: #1a1c1d;
+    background: #a855f7;
+    color: #ffffff;
     padding: 12px;
     text-decoration: none;
     font-weight: bold;
@@ -328,27 +361,34 @@
 }
 
 .buy-btn:hover {
-    background: #c3ab70;
+    background: #9333ea;
     letter-spacing: 1px;
 }
 
-/* Бейджи */
+/* --- БЕЙДЖ --- */
 .badge {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #760000;
+    background: #581c87;
     color: #fff;
     font-size: 10px;
     padding: 3px 8px;
 }
+
+
+/* =========================
+   1440+ ADAPTIVE
+========================= */
+
 @media only screen and (min-width: 1440px) {
- .home-title{
-    font-size: 100px;
-    margin-bottom: 50px;
-   margin-top: 100px;
- }
- .hero-subtitle{
-    font-size: 24px;
- }
+    .home-title {
+        font-size: 100px;
+        margin-bottom: 50px;
+        margin-top: 100px;
+    }
+
+    .hero-subtitle {
+        font-size: 24px;
+    }
 }

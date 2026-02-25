@@ -1,8 +1,12 @@
+/* =========================
+   CONTACT SECTION
+========================= */
+
 .contact-section {
     padding: 120px 0 60px;
     background: #1a1c1d;
     position: relative;
-    border-top: 1px solid rgba(181, 134, 13, 0.1);
+    border-top: 1px solid rgba(168, 85, 247, 0.15);
 }
 
 .contact-wrapper {
@@ -14,19 +18,23 @@
 
 .contact-subtitle {
     font-size: 18px;
-    color: #8a8a8e;
+    color: #9ca3af;
     max-width: 500px;
 }
 
-/* Кнопка в стиле "Золотой неон" */
+
+/* =========================
+   TELEGRAM BUTTON (AMETHYST NEON)
+========================= */
+
 .tg-link-premium {
     display: flex;
     align-items: center;
     gap: 15px;
     background: transparent;
-    border: 2px solid #b5860d;
+    border: 2px solid #a855f7;
     padding: 20px 50px;
-    color: #c3ab70;
+    color: #c084fc;
     text-decoration: none;
     font-family: "Goldman", sans-serif;
     font-size: 20px;
@@ -35,31 +43,39 @@
     letter-spacing: 2px;
     position: relative;
     transition: all 0.4s ease;
-    box-shadow: 0 0 20px rgba(181, 134, 13, 0.1);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
 }
 
 .tg-link-premium:hover {
-    background: #b5860d;
-    color: #1a1c1d;
-    box-shadow: 0 0 40px rgba(181, 134, 13, 0.4);
+    background: #a855f7;
+    color: #ffffff;
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.5);
     transform: scale(1.05);
 }
 
 .tg-icon {
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
 }
 
-/* Финальная линия и копирайт */
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer-bottom {
     margin-top: 100px;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .footer-bottom .line {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #760000, transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            #a855f7,
+            transparent);
     margin-bottom: 30px;
 }
 
@@ -67,4 +83,5 @@
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
+    color: #9ca3af;
 }

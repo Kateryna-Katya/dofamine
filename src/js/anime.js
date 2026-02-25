@@ -1,7 +1,7 @@
 // Підключи GSAP у HTML: <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 window.addEventListener('load', () => {
-    // 1. Анімація сяйва за мишкою
+    // 1. Анімація сяйва за мишкою (тепер з аметистовим відтінком у CSS)
     const glow = document.querySelector('.cursor-glow');
     window.addEventListener('mousemove', (e) => {
         gsap.to(glow, {
@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
             ease: "power2.out"
         });
 
-        // 2. Паралакс ефект для контенту
+        // 2. Паралакс ефект для контенту (текст та лого трохи рухаються за мишкою)
         const moveX = (e.clientX - window.innerWidth / 2) * 0.02;
         const moveY = (e.clientY - window.innerHeight / 2) * 0.02;
 
@@ -21,16 +21,26 @@ window.addEventListener('load', () => {
             duration: 1,
             ease: "power2.out"
         });
+
+        // Паралакс для кутових логотипів (рухаються у протилежний бік для глибини)
+        gsap.to(".t-left", { x: -moveX * 2, y: -moveY * 2, duration: 1.5 });
+        gsap.to(".b-right", { x: moveX * 2, y: moveY * 2, duration: 1.5 });
     });
 
-    // 3. Золоті частинки (Particle System)
+    // 3. Аметистові частинки (Particle System)
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    
+    // Функція для встановлення розміру канвасу
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
     let particles = [];
-    const particleCount = 80;
+    const particleCount = 100; // Трохи збільшив кількість для ефектності
 
     class Particle {
         constructor() {
@@ -42,7 +52,7 @@ window.addEventListener('load', () => {
             this.size = Math.random() * 2 + 0.5;
             this.speedX = Math.random() * 0.5 - 0.25;
             this.speedY = Math.random() * 0.5 - 0.25;
-            this.opacity = Math.random() * 0.5;
+            this.opacity = Math.random() * 0.6; // Зробив трохи яскравіше
         }
         update() {
             this.x += this.speedX;
@@ -52,7 +62,8 @@ window.addEventListener('load', () => {
             }
         }
         draw() {
-            ctx.fillStyle = `rgba(181, 134, 13, ${this.opacity})`;
+            // КОЛІР ОНОВЛЕНО: Тепер це яскравий аметист (168, 85, 247)
+            ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();

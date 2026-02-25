@@ -8,16 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let isMenuOpen = false;
   
     const burgerIcon = `
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" stroke="#FFC401" />
-  <path d="M5.625 7.125H18.375M5.625 16.125H18.375M5.625 11.625H18.375" stroke="#F1EEE1" stroke-linecap="round" />
-</svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" stroke="#a855f7" />
+        
+        <path d="M5.625 7.125H18.375M5.625 16.125H18.375M5.625 11.625H18.375" 
+              stroke="#f5f3ff"
+              stroke-linecap="round" />
+    </svg>
+
     `;
   
     const crossIcon = `
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" stroke="#FFC401" />
-  <path d="M5.25 5.25L12 12M12 12L5.25 18.75M12 12L18.75 18.75M12 12L18.75 5.25" stroke="#F1EEE1" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" stroke="#a855f7" />
+  
+  <path d="M5.25 5.25L12 12M12 12L5.25 18.75M12 12L18.75 18.75M12 12L18.75 5.25" 
+        stroke="#f5f3ff" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
 </svg>
     `;
   
