@@ -4,7 +4,7 @@
 
 /* --- ГЛАВНЫЙ ЗАГОЛОВОК --- */
 .home-title {
-    font-family: "Orbitron", sans-serif;
+    font-family: "Michroma", sans-serif;
     font-weight: 700;
     font-size: 50px;
     text-transform: uppercase;
@@ -18,7 +18,7 @@ color: #f5f3ff;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0.4px #2e1065;   
+
 }
 /* --- ГЛАВНАЯ КНОПКА --- */
 .home-link {
