@@ -4,20 +4,22 @@
 
 /* --- ГЛАВНЫЙ ЗАГОЛОВОК --- */
 .home-title {
-    font-family: "Cinzel Decorative", sans-serif;
+    font-family: "Orbitron", sans-serif;
     font-weight: 700;
     font-size: 50px;
     text-transform: uppercase;
     text-align: center;
-    background: linear-gradient(180deg, #f5f3ff 0%, #a855f7 50%, #6b21a8 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0.4px #2e1065;
+color: #f5f3ff;
     margin-top: 140px;
     margin-bottom: 40px;
 }
-
+.dark{
+     background: linear-gradient(180deg, #f5f3ff 0%, #a855f7 50%, #6b21a8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.4px #2e1065;   
+}
 /* --- ГЛАВНАЯ КНОПКА --- */
 .home-link {
     margin-top: 40px;
@@ -129,23 +131,18 @@
 
 @media (max-width: 768px) {
 
-    /* 1. Увеличиваем высоту секции, если контента много, или ставим минимум */
+ 
     .home-section {
         height: auto;
         min-height: 60vh;
-        /* Чтобы на маленьких телефонах ничего не вылетало */
+      
         padding: 80px 0;
-        /* Даем внутренние отступы, чтобы текст не бил в края */
-    }
-
-
-
-    /* 4. Логотипы в углах — делаем их меньше и убираем "навязчивость" */
+      
+    }   
     .corner-logo {
-        width: 45px;
-        /* Еще меньше */
+        width: 45px;   
         opacity: 0.3;
-        /* Больше прозрачности, чтобы не перекрывали текст */
+      
     }
 
     .t-left {
@@ -158,17 +155,15 @@
         right: 15px;
     }
 
-    /* 5. Кнопка — делаем чуть уже для узких экранов */
+
     .home-link {
         width: 240px;
         height: 44px;
         margin-top: 30px;
     }
 
-    /* 6. Основной логотип в центре (если он есть) */
-    .hero-main-img {
-        width: 140px;
-    }
+
+
 }
 
 /* --- СИЯНИЕ КУРСОРА --- */
