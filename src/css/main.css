@@ -10,7 +10,7 @@
     text-transform: uppercase;
     text-align: center;
 color: #f5f3ff;
-    margin-top: 140px;
+    margin-top: 60px;
     margin-bottom: 40px;
 }
 .dark{
@@ -183,10 +183,6 @@ color: #f5f3ff;
    ABOUT SECTION
 ========================= */
 
-.about-section {
-    padding: 100px 0;
-    background: linear-gradient(180deg, #1a1c1d 0%, #151718 100%);
-}
 
 .about-content {
     display: flex;
@@ -387,10 +383,6 @@ color: #f5f3ff;
         font-size: 24px;
     }
 }
-.warranty-section {
-    padding: 100px 0;
-    background: linear-gradient(180deg, #151718 0%, #1a1c1d 100%);
-}
 
 .warranty-grid {
     display: grid;
@@ -507,87 +499,311 @@ color: #f5f3ff;
         text-align: center;
     }
 }
-/* Контейнер фона */
-.bg-overlay {
-    position: fixed;
+/* 2. Секция продуктов теперь контейнер для фона */
+.product-section {
+    position: relative;
+    overflow: hidden;
+    /* Чтобы фон не вылезал за границы секции */
+    padding: 100px 0;
+    background: transparent;
+}
+
+/* 3. Переделываем Overlay под локальное использование */
+.product-section .bg-overlay {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    /* Важно: должен быть МЕНЬШЕ, чем у секций */
-    background-color: var(--bg-color);
-    overflow: hidden;
+    /* Уходит под карточки */
+    pointer-events: none;
+ 
+}
+
+/* 4. Плавающие иконки для остальных секций */
+.section-decor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
     pointer-events: none;
 }
 
-/* Точечная сетка (Google Ads Style) */
-.bg-grid {
+.float-icon {
+    position: absolute;
+    opacity: 0.06;
+    /* Чуть заметнее на чистом фоне */
+    stroke: var(--purple);
+    filter: drop-shadow(0 0 10px var(--purple));
+}
+/* Статичные карточки с мягким ховером */
+.product-card,
+.feature-card,
+.warranty-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+}
+.float-icon {
+    position: absolute;
+    width: 60px;
+    /* Размер иконок */
+    height: 60px;
+    fill: none;
+    stroke: var(--purple);
+    stroke-width: 1.2;
+    opacity: 0.06;
+    filter: drop-shadow(0 0 10px var(--purple));
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Специфические размеры для некоторых иконок */
+.float-icon.ads {
+    width: 120px;
+    height: 120px;
+    opacity: 0.03;
+}
+
+.float-icon.gear {
+    width: 100px;
+    height: 100px;
+}
+/* Внутренние элементы фона в секции товаров */
+.product-section .bg-grid {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 200%;
-    /* Запас для параллакса */
-    background-image: radial-gradient(var(--purple) 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.15;
-    /* Увеличил видимость */
+    height: 100%;
+    background-image: radial-gradient(var(--purple) 0.8px, transparent 0.8px);
+    background-size: 30px 30px;
+    opacity: 0.1;
 }
 
-/* Фиолетовые неоновые облака */
-.bg-blobs {
+.product-section .bg-blobs {
     position: absolute;
     width: 100%;
     height: 100%;
-    filter: blur(100px);
+    filter: blur(80px);
+}
+
+.product-section .blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: var(--purple);
+    border-radius: 50%;
+    opacity: 0.08;
+}
+
+.product-section .blob:nth-child(1) {
+    top: -10%;
+    left: -10%;
+}
+
+.product-section .blob:nth-child(2) {
+    bottom: -10%;
+    right: -10%;
+    background: var(--deep-purple);
+}
+.float-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    fill: none;
+
+    /* ИЗМЕНЕНИЯ ЗДЕСЬ: */
+    stroke: #ffffff;
+    /* Цвет линии теперь чисто белый */
+    stroke-width: 1.2;
+    opacity: 0.15;
+    /* Сделали ярче (было 0.06). Попробуйте 0.2, если нужно еще ярче */
+
+    /* Белое неоновое свечение вместо фиолетового */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+
+    z-index: 0;
+    pointer-events: none;
+}
+/* Розогреваем родительскую секцию */
+.product-section {
+    position: relative;
+    /* Чтобы фон не улетел */
+    overflow: hidden;
+    /* Чтобы пятна не вылезали за границы */
+    background-color: #0d0e10;
+    /* Базовый темный цвет */
+    z-index: 1;
+}
+
+/* Контейнер для всех слоев фона */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Уходим за карточки */
+    pointer-events: none;
+}
+
+/* Слой 1: Точечная сетка (Google стиль) */
+.bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* Слой 2: Светящиеся аметистовые пятна */
+.bg-blobs {
+    position: absolute;
+    inset: 0;
+    filter: blur(80px);
+    opacity: 0.4;
 }
 
 .blob {
     position: absolute;
-    width: 600px;
-    height: 600px;
-    background: var(--purple);
+    width: 400px;
+    height: 400px;
+    background: #a855f7;
     border-radius: 50%;
-    opacity: 0.1;
-    animation: moveBlobs 25s infinite alternate ease-in-out;
 }
 
 .blob:nth-child(1) {
-    top: -10%;
-    left: -5%;
+    top: -100px;
+    left: -100px;
+    opacity: 0.3;
 }
 
 .blob:nth-child(2) {
-    bottom: 10%;
-    right: -5%;
-    background: var(--deep-purple);
+    bottom: -100px;
+    right: -100px;
+    background: #6b21a8;
+    opacity: 0.3;
 }
 
-@keyframes moveBlobs {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-
-    to {
-        transform: translate(100px, 50px) scale(1.1);
-    }
+/* Слой 3: Иконки (если используешь паттерн) */
+.bg-icons {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h10v10H10zM50 50h5v5h-5z' fill='%23ffffff' opacity='0.2'/%3E%3C/svg%3E");
 }
-/* 1. Делаем абсолютно все обертки прозрачными */
-main,
-section,
-header,
-footer,
-.container {
+/* 1. Делаем саму секцию прозрачной ширмой */
+.product-section {
+    position: relative;
     background: transparent !important;
-    /* Убираем любые фоны */
-    background-color: transparent !important;
+    /* Убираем заливку самой секции */
+    z-index: 1;
 }
 
-/* 2. Если у тебя есть специфические классы для секций, проверь их тоже */
-.home-section,
-.about-section,
-.product-section,
-.warranty-section {
-    background: none !important;
+/* 2. Настраиваем слои внутри */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Фон уходит за контент */
+    background-color: #0d0e10;
+    /* Вот здесь задаем цвет ПОД сеткой */
+    pointer-events: none;
+}
+
+/* 3. Контент должен быть ПОВЕРХ всего */
+.product-section .container {
+    position: relative;
+    z-index: 2;
+}
+/* --- СЛОЙ С ИКОНКАМИ В СЕКЦИИ ПРОДУКТОВ --- */
+.product-section .bg-icons {
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    /* Регулируйте яркость иконок здесь */
+    pointer-events: none;
+    z-index: -1;
+
+    /* SVG Паттерн: График, Монеты, Рекламный мегафон, Документ, Google Ads */
+    background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='white' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- График роста --%3E%3Cpath d='M20 50v-20h20M20 50l15-15 10 10 20-20'/%3E%3C!-- Монета --%3E%3Ccircle cx='140' cy='30' r='10'/%3E%3Cpath d='M140 24v12M134 30h12'/%3E%3C!-- Рекламный мегафон --%3E%3Cpath d='M30 130l15-10v20l-15-10zm15-10h10a5 5 0 015 5v0a5 5 0 01-5 5H45'/%3E%3C!-- Документ --%3E%3Cpath d='M130 120h20v30h-20zM134 128h12M134 136h12M134 144h6'/%3E%3C!-- Google Ads (Треугольник) --%3E%3Cpath d='M90 80l-20 35h40L90 80z' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+
+    background-size: 220px 220px;
+    /* Плотность расположения иконок */
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+}
+
+/* Настройка слоев в секции, чтобы всё было видно */
+.product-section {
+    position: relative;
+    background-color: transparent !important;
+    overflow: hidden;
+}
+
+.product-section .bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #0d0e10;
+    /* Базовый черный */
+    z-index: -2;
+}
+
+/* Сетка (делаем ее белой и очень тонкой) */
+.product-section .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+}
+/* Позиционирование иконок именно в секции About */
+.about-section .doc {
+    top: 15%;
+    left: 7%;
+    width: 70px;
+    height: 70px;
+    transform: rotate(-15deg);
+}
+
+.about-section .gear {
+    bottom: 10%;
+    right: 5%;
+    width: 110px;
+    height: 110px;
+    opacity: 0.1;
+    /* Чуть приглушим крупную шестеренку */
+}
+.home-section {
+    /* Добавляем градиент перед url картинки */
+    background-image: linear-gradient(rgba(13, 14, 16, 0.7),
+            rgba(13, 14, 16, 0.7)), url("/img/hero.jpg");
+
+    background-repeat: no-repeat;
+    background-position: top 20% center;
+    background-size: cover;
+}
+@media only screen and (min-width: 1440px) {
+.home-section {
+        /* Добавляем градиент перед url картинки */
+        background-image: linear-gradient(rgba(13, 14, 16, 0.7),
+                rgba(13, 14, 16, 0.7)), url("/img/hero.jpg");
+
+        background-repeat: no-repeat;
+        background-position: top 20% center;
+        background-size: cover;
+    }
 }

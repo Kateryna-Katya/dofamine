@@ -1,23 +1,24 @@
 /**
- * CATHARSIS FARM - Official Animation Script 2026
- * Стилистика: Amethyst Cyberpunk
+ * CATHARSIS FARM - Full Animation Script 2026
+ * Оптимизация: Статичные карточки + Динамический фон
  */
 
-// Регистрируем плагин ScrollTrigger
+// 1. Регистрация плагина ScrollTrigger
 if (typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 }
 
 window.addEventListener('load', () => {
-    
     // Проверка наличия GSAP
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        console.error("GSAP или ScrollTrigger не найдены. Проверьте подключение в HTML.");
+        console.error("Критическая ошибка: GSAP или ScrollTrigger не найдены.");
         return;
     }
 
-    // --- 1. АМЕТИСТОВЫЕ ЧАСТИЦЫ (Canvas) ---
+    // --- 1. HERO: АМЕТИСТОВЫЕ ЧАСТИЦЫ (Canvas 2D) ---
     const canvas = document.getElementById('particleCanvas');
+    let isCanvasActive = true;
+
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -34,7 +35,7 @@ window.addEventListener('load', () => {
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
+                this.size = Math.random() * 1.5 + 0.5;
                 this.spX = Math.random() * 0.4 - 0.2;
                 this.spY = Math.random() * 0.4 - 0.2;
                 this.opacity = Math.random() * 0.5;
@@ -45,127 +46,128 @@ window.addEventListener('load', () => {
                 if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
             }
             draw() {
-                ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`; // Фиолетовый
+                // Используем фиолетовый цвет частиц для Hero
+                ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
 
-        function animate() {
+        function animateParticles() {
+            if (!isCanvasActive) return; 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateParticles);
         }
-        animate();
+        animateParticles();
+
+        // Оптимизация: выключаем канвас, когда скроллим вниз
+        ScrollTrigger.create({
+            trigger: ".home-section",
+            start: "top top",
+            end: "bottom top",
+            onLeave: () => isCanvasActive = false,
+            onEnterBack: () => { isCanvasActive = true; animateParticles(); }
+        });
     }
 
-    // --- 2. МЫШЬ: СВЕЧЕНИЕ И ПАРАЛЛАКС ---
+    // --- 2. ПЛАВАЮЩИЕ БЕЛЫЕ SVG-ИКОНКИ (Везде) ---
+    function initFloatingIcons() {
+        const icons = gsap.utils.toArray('.float-icon');
+        
+        icons.forEach((icon) => {
+            // Хаотичное "дыхание" (движение)
+            gsap.to(icon, {
+                x: `+=${gsap.utils.random(20, 45)}`,
+                y: `+=${gsap.utils.random(25, 55)}`,
+                rotation: gsap.utils.random(-20, 20),
+                duration: gsap.utils.random(5, 9),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                force3D: true
+            });
+
+            // Мерцание белого неона
+            gsap.to(icon, {
+                opacity: gsap.utils.random(0.12, 0.25),
+                duration: gsap.utils.random(2, 4),
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
+        });
+    }
+    initFloatingIcons();
+
+    // --- 3. МЫШЬ: СВЕЧЕНИЕ И ПАРАЛЛАКС ---
     const glow = document.querySelector('.cursor-glow');
     
     window.addEventListener('mousemove', (e) => {
-        // Движение пятна света
+        // Движение пятна света (Glow)
         if (glow) {
             gsap.to(glow, {
                 x: e.clientX,
                 y: e.clientY,
-                duration: 0.8,
-                ease: "power2.out"
+                duration: 0.6,
+                ease: "power2.out",
+                overwrite: "auto"
             });
         }
 
-        // Параллакс Hero-контента
-        const moveX = (e.clientX - window.innerWidth / 2) * 0.015;
-        const moveY = (e.clientY - window.innerHeight / 2) * 0.015;
+        // Мягкий параллакс элементов в Hero
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
 
-        gsap.to(".hero-content", { x: moveX, y: moveY, duration: 1 });
-        gsap.to(".t-left", { x: -moveX * 2.5, y: -moveY * 2.5, duration: 1.2 });
-        gsap.to(".b-right", { x: moveX * 2.5, y: moveY * 2.5, duration: 1.2 });
+        gsap.to(".hero-content", { x: moveX, y: moveY, duration: 1, overwrite: "auto" });
+        gsap.to(".section-decor", { x: moveX * 0.7, y: moveY * 0.7, duration: 1.5, overwrite: "auto" });
+        gsap.to(".t-left", { x: -moveX * 2, y: -moveY * 2, duration: 1.3 });
+        gsap.to(".b-right", { x: moveX * 2, y: moveY * 2, duration: 1.3 });
     });
 
-    // --- 3. СКРОЛЛ-АНИМАЦИИ (Для всех секций) ---
-
-    // Анимация About (Feature Cards)
-    gsap.from(".feature-card", {
+    // --- 4. ЛОКАЛЬНЫЙ КИБЕРПАНК-ФОН (Только секция Product) ---
+    
+    // Движение сетки при скролле
+    gsap.to(".product-section .bg-grid", {
         scrollTrigger: {
-            trigger: ".about-grid",
-            start: "top 85%",
+            trigger: ".product-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.5
+        },
+        y: -100,
+        ease: "none"
+    });
+
+    // Появление фиолетовых облаков (blobs)
+    gsap.from(".product-section .blob", {
+        scrollTrigger: {
+            trigger: ".product-section",
+            start: "top 75%",
         },
         autoAlpha: 0,
-        y: 40,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power2.out",
-        clearProps: "all" 
+        scale: 0.7,
+        duration: 2.5,
+        stagger: 0.4,
+        ease: "power2.out"
     });
-
-    // Анимация Product (Карточки товаров)
-    gsap.from(".product-card", {
-        scrollTrigger: {
-            trigger: ".product-grid",
-            start: "top 85%",
-        },
-        autoAlpha: 0,
-        y: 60,
-        scale: 0.95,
-        stagger: 0.15,
-        duration: 1,
-        ease: "power3.out",
-        clearProps: "all"
-    });
-
-    // Анимация Warranty (Карточки гарантии)
-    gsap.from(".warranty-card", {
-        scrollTrigger: {
-            trigger: ".warranty-grid",
-            start: "top 85%",
-        },
-        autoAlpha: 0,
-        x: (i) => i % 2 === 0 ? -30 : 30, // Выезжают с разных сторон
-        duration: 1,
-        stagger: 0.3,
-        ease: "power2.out",
-        clearProps: "all"
-    });
-
-    // Анимация CTA кнопок (под гарантией)
-    gsap.from(".cta-group a", {
-        scrollTrigger: {
-            trigger: ".cta-group",
-            start: "top 95%",
-        },
-        autoAlpha: 0,
-        y: 20,
-        scale: 0.8,
-        stagger: 0.2,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-        clearProps: "all"
-    });
-// Легкий параллакс для фоновой сетки
-gsap.to(".bg-grid", {
+    gsap.to(".product-section .bg-icons", {
     scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true
+        trigger: ".product-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.5 // Иконки будут плавно "плавать" при движении страницы
     },
-    y: -100, // Сетка движется медленнее контента
+    y: -60,
     ease: "none"
 });
 
-// Плавное появление фоновых сфер
-gsap.from(".blob", {
-    opacity: 0,
-    duration: 3,
-    stagger: 0.5,
-    ease: "power2.out"
-});
-    // --- 4. ФИНАЛЬНЫЙ FIX: ОБНОВЛЕНИЕ ТРИГГЕРОВ ---
-    // Выполняем через небольшую паузу, чтобы браузер успел отрисовать всё
+    // --- 5. ФИНАЛЬНЫЙ FIX ТРИГГЕРОВ ---
+    // Даем браузеру 400мс на отрисовку всего контента и пересчитываем координаты
     setTimeout(() => {
         ScrollTrigger.refresh();
-    }, 200);
+    }, 400);
 });

@@ -3,8 +3,7 @@
 ========================= */
 
 .contact-section {
-    padding: 120px 0 60px;
-    background: #1a1c1d;
+background: linear-gradient(to top, #3b0764 0%, #0d0e10 80%);
     position: relative;
     border-top: 1px solid rgba(168, 85, 247, 0.15);
 }
