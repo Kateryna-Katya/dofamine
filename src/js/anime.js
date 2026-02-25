@@ -149,5 +149,5 @@ window.addEventListener('load', () => {
     // Выполняем через небольшую паузу, чтобы браузер успел отрисовать всё
     setTimeout(() => {
         ScrollTrigger.refresh();
-    }, 300);
+    }, 200);
 });
