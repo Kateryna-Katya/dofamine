@@ -1,5 +1,13 @@
+:root {
+  --bg-color: #0d0e10;
+  --purple: #a855f7;
+  /* Яркий фиолетовый из лого */
+  --deep-purple: #3b0764;
+  /* Темный фиолетовый для облаков */
+  --silver: #f5f3ff;
+}
 body {
-  background: #1a1c1d;
+
   font-family: "Goldman", sans-serif;
   font-weight: 400;
   font-size: 16px;

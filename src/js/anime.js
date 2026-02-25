@@ -144,7 +144,25 @@ window.addEventListener('load', () => {
         ease: "back.out(1.7)",
         clearProps: "all"
     });
+// Легкий параллакс для фоновой сетки
+gsap.to(".bg-grid", {
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true
+    },
+    y: -100, // Сетка движется медленнее контента
+    ease: "none"
+});
 
+// Плавное появление фоновых сфер
+gsap.from(".blob", {
+    opacity: 0,
+    duration: 3,
+    stagger: 0.5,
+    ease: "power2.out"
+});
     // --- 4. ФИНАЛЬНЫЙ FIX: ОБНОВЛЕНИЕ ТРИГГЕРОВ ---
     // Выполняем через небольшую паузу, чтобы браузер успел отрисовать всё
     setTimeout(() => {
