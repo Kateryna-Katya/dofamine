@@ -387,3 +387,123 @@ color: #f5f3ff;
         font-size: 24px;
     }
 }
+.warranty-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #151718 0%, #1a1c1d 100%);
+}
+
+.warranty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+    margin-top: 40px;
+}
+
+.warranty-card {
+    background: rgba(168, 85, 247, 0.03);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    padding: 40px;
+    text-align: left;
+    position: relative;
+    transition: 0.4s ease;
+}
+
+.warranty-card:hover {
+    border-color: #a855f7;
+    background: rgba(168, 85, 247, 0.07);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.1);
+}
+
+.warranty-card h3 {
+    font-family: "Orbitron", sans-serif;
+    color: #f5f3ff;
+    font-size: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.warranty-list {
+    list-style: none;
+    padding: 0;
+}
+
+.warranty-list li {
+    margin-bottom: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d0d0d4;
+    padding-left: 25px;
+    position: relative;
+}
+
+/* Фиолетовые маркеры */
+.warranty-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: #a855f7;
+    font-weight: bold;
+}
+
+/* --- КНОПКИ --- */
+.cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+/* Стиль кнопки "Тест" (Вторичная) */
+.btn-secondary {
+    font-family: "Goldman", sans-serif;
+    text-decoration: none;
+    color: #a855f7;
+    border: 1px solid #a855f7;
+    padding: 15px 30px;
+    border-radius: 4px;
+    transition: 0.3s;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+    background: rgba(168, 85, 247, 0.1);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+/* Стиль кнопки "Консультация" (Главная неоновая) */
+.btn-primary-neon {
+    font-family: "Goldman", sans-serif;
+    text-decoration: none;
+    background: #a855f7;
+    color: #fff;
+    padding: 15px 35px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.btn-primary-neon:hover {
+    background: #9333ea;
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .cta-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-secondary,
+    .btn-primary-neon {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
